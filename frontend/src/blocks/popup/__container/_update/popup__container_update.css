@@ -1,0 +1,6 @@
+.popup__container_update {
+  height: 272px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}

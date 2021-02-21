@@ -1,0 +1,25 @@
+.profile__info-edit {
+  width: 24px;
+  height: 24px;
+  margin: 0 0 0 17px;
+  padding: 0;
+  background: url(../../../images/Edit-button.svg);
+  border: none;
+  align-self: center;
+  box-sizing: border-box;
+  cursor: pointer;
+  background-size: contain;
+}
+
+.profile__info-edit:hover {
+  opacity: .6;
+  transition: 1s;  
+}
+
+@media screen and (min-width: 320px) and (max-width: 425px) {
+  .profile__info-edit {
+    width: 18px;
+    height: 18px;
+    margin: 0 0 0 6px;
+  }
+}

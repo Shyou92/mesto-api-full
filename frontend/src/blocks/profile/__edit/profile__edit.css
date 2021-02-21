@@ -1,0 +1,39 @@
+.profile__edit {
+  width: 115px;
+  height: 115px;
+  border-radius: 50%;
+  opacity: 0;
+  outline: none;
+  position: absolute;
+  cursor: pointer;
+}
+
+.profile__edit::before {
+  display: block;
+  content: "";
+  background-image: url(../../../images/Edit.svg);
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  height: 26px;
+  width: 26px;
+  margin: 0 auto;
+}
+
+.profile__edit:hover {
+  background-color: rgba(42, 44, 47, 0.8);
+  opacity: 1;
+  transition: 1s;
+  border: hidden;
+}
+
+@media screen and (max-width: 929px) {
+  .profile__edit {
+    top: 164px;
+  }
+}
+
+@media screen and (max-width: 424px) {
+  .profile__edit {
+    top: 137px;
+  }
+}
