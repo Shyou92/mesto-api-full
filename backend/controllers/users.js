@@ -1,5 +1,6 @@
+const bcrypt = require('bcryptjs');
 const User = require('../models/user');
-const { NotFound, BadRequest } = require('../errors');
+const { NotFound, BadRequest, Unauthorized } = require('../errors');
 
 const getUsers = (req, res) => {
   User.find({})
@@ -25,10 +26,15 @@ const getSingleUser = (req, res, next) => {
 };
 
 const createUser = (req, res, next) => {
-  const { name, about, avatar } = req.body;
+  const {
+    name, about, avatar, email, password,
+  } = req.body;
   res.setHeader('Content-Type', 'application/json');
 
-  User.create({ name, about, avatar })
+  bcrypt.hash(password, 10)
+    .then((hash) => User.create({
+      name, about, avatar, email, password: hash,
+    }))
     .then((user) => {
       if (!user) {
         throw new BadRequest('Введите корректные данные');
@@ -74,10 +80,23 @@ const updateAvatar = (req, res, next) => {
     });
 };
 
+const login = (req, res, next) => {
+  const { email, password } = req.body;
+
+  return User.findUserByCredentials(email, password)
+    .then((user) => {
+      if (!user) {
+        throw new Unauthorized('Неправильные почта или пароль')
+      }
+    })
+    .catch((err) => next(err));
+};
+
 module.exports = {
   getUsers,
   getSingleUser,
   createUser,
   updateProfile,
   updateAvatar,
+  login,
 };
