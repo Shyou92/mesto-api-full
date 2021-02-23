@@ -90,7 +90,7 @@ const login = (req, res, next) => {
         throw new Unauthorized('Неправильные почта или пароль');
       }
 
-      const token = jwt.sign({ _id: user._id }, 'some-secret', { expiresIn: '7d' });
+      const token = jwt.sign({ _id: user._id }, '6afe49c579431af0fdb89c6566ad090995656fbb793e9a20b5d6872281031532', { expiresIn: '7d' });
 
       res.send({ token });
     })

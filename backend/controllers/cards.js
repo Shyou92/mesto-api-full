@@ -1,5 +1,5 @@
 const Card = require('../models/card');
-const { NotFound, BadRequest } = require('../errors');
+const { NotFound, BadRequest, Forbidden } = require('../errors');
 
 const getCards = (req, res, next) => {
   Card.find({})
@@ -17,7 +17,6 @@ const getCards = (req, res, next) => {
 const createCard = (req, res, next) => {
   const { name, link } = req.body;
   res.setHeader('Content-Type', 'application/json');
-
   Card.create({ name, link, owner: req.user._id })
     .then((card) => {
       if (!card) {
@@ -33,15 +32,22 @@ const createCard = (req, res, next) => {
 const deleteCard = (req, res, next) => {
   const { cardId } = req.params;
 
-  Card.findByIdAndRemove(cardId)
-    .then((card) => {
-      if (!card) {
-        throw new NotFound('Такой карточки не существует');
-      } else {
-        res.status(200).send({ data: card });
-      }
+  Card.findById(cardId)
+    .orFail()
+    .catch(() => {
+      throw new NotFound('Такой карточки не существует');
     })
-    .catch((err) => next(err));
+    .then((card) => {
+      if (card.owner.toString() !== req.user._id) {
+        throw new Forbidden('Нет доступа к этой карточке');
+      }
+
+      Card.findByIdAndDelete(cardId)
+        .then((data) => {
+          res.status(200).send({ data });
+        })
+        .catch(next);
+    });
 };
 
 const likeCard = (req, res, next) => {
