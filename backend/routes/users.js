@@ -4,9 +4,9 @@ const controller = require('../controllers/users');
 
 router.get('/', controller.getUsers); // obtaining all users
 
-router.get('/:id', controller.getSingleUser); // obtaining single user
+router.get('/me', controller.getCurrentUser); // obtaining current user
 
-router.post('/', controller.createUser); // creating user
+router.get('/:id', controller.getSingleUser); // obtaining single user
 
 router.patch('/me', controller.updateProfile); // updating profile
 

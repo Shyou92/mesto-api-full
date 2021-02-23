@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const router = require('./routes');
 const errorHandler = require('./middlewares/errorHandler');
+const { login, createUser } = require('./controllers/users');
 
 const { PORT = 3000 } = process.env;
 
@@ -26,6 +27,9 @@ app.use((req, res, next) => {
 });
 
 app.use('/', router);
+
+app.post('/signup', createUser);
+app.post('/signin', login);
 
 app.use('*', (req, res) => {
   res.status(404).send({ message: 'Запрашиваемый ресурс не найден' });
