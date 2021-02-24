@@ -5,7 +5,10 @@ const router = require('./routes');
 const errorHandler = require('./middlewares/errorHandler');
 const { login, createUser } = require('./controllers/users');
 const auth = require('./middlewares/auth');
+const registerValidation = require('./middlewares/validators/register');
+const loginValidation = require('./middlewares/validators/login');
 const { NotFound } = require('./errors');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const { PORT = 3000 } = process.env;
 
@@ -20,8 +23,10 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
   useFindAndModify: false,
 });
 
-app.post('/signup', createUser);
-app.post('/signin', login);
+app.use(requestLogger);
+
+app.post('/signup', registerValidation, createUser);
+app.post('/signin', loginValidation, login);
 
 app.use(auth);
 
@@ -30,6 +35,8 @@ app.use('/', router);
 app.use('*', (req, res) => {
   throw new NotFound('Запрашиваемый ресурс не найден');
 });
+
+app.use(errorLogger);
 
 app.use(errorHandler);
 

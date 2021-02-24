@@ -3,13 +3,13 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const { NotFound, BadRequest, Unauthorized } = require('../errors');
 
-const getUsers = (req, res) => {
+const getUsers = (req, res, next) => {
   User.find({})
     .then((users) => {
       res.status(200).send(users);
     })
     .catch((err) => {
-      res.status(500).send({ message: `${err}` });
+      next(err);
     });
 };
 
