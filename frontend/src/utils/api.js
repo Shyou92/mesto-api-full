@@ -1,8 +1,6 @@
 class Api {
-  constructor(baseUrl, group, token) {
+  constructor(baseUrl) {
     this.baseUrl = baseUrl;
-    this.group = group;
-    this.token = token;
   }
 
   _getResponseData(res) {
@@ -18,8 +16,8 @@ class Api {
   getUserInfo() {
     return fetch(`${this.baseUrl}/users/me`, {
       headers: {
-        authorization: this.token,
-        "Content-Type": "application/json",
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
       },
     }).then((res) => {
       return this._getResponseData(res);
@@ -29,8 +27,8 @@ class Api {
   getCards() {
     return fetch(`${this.baseUrl}/cards`, {
       headers: {
-        authorization: this.token,
-        "Content-Type": "application/json",
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
       },
     }).then((res) => {
       return this._getResponseData(res);
@@ -41,8 +39,8 @@ class Api {
     return fetch(`${this.baseUrl}/users/me`, {
       method: "PATCH",
       headers: {
-        authorization: this.token,
-        "Content-Type": "application/json",
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         name: data.name,
@@ -57,8 +55,8 @@ class Api {
     return fetch(`${this.baseUrl}/cards`, {
       method: "POST",
       headers: {
-        authorization: this.token,
-        "Content-Type": "application/json",
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         name,
@@ -75,8 +73,8 @@ class Api {
     return fetch(`${this.baseUrl}/cards/likes/${cardID}`, {
       method,
       headers: {
-        authorization: this.token,
-        "Content-Type": "application/json",
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
       },
     }).then((res) => {
       return this._getResponseData(res);
@@ -87,8 +85,8 @@ class Api {
     return fetch(`${this.baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: {
-        authorization: this.token,
-        "Content-Type": "application/json",
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         avatar: data,
@@ -102,8 +100,8 @@ class Api {
     return fetch(`${this.baseUrl}/cards/${cardID}`, {
       method: "DELETE",
       headers: {
-        authorization: this.token,
-        "Content-Type": "application/json",
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
       },
     }).then((res) => {
       return this._getResponseData(res);
