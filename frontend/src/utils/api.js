@@ -16,7 +16,7 @@ class Api {
   }
 
   getUserInfo() {
-    return fetch(`${this.baseUrl}v1/${this.group}/users/me`, {
+    return fetch(`${this.baseUrl}/users/me`, {
       headers: {
         authorization: this.token,
         "Content-Type": "application/json",
@@ -27,7 +27,7 @@ class Api {
   }
 
   getCards() {
-    return fetch(`${this.baseUrl}v1/${this.group}/cards`, {
+    return fetch(`${this.baseUrl}/cards`, {
       headers: {
         authorization: this.token,
         "Content-Type": "application/json",
@@ -38,7 +38,7 @@ class Api {
   }
 
   setUserInfo(data) {
-    return fetch(`${this.baseUrl}v1/${this.group}/users/me`, {
+    return fetch(`${this.baseUrl}/users/me`, {
       method: "PATCH",
       headers: {
         authorization: this.token,
@@ -54,7 +54,7 @@ class Api {
   }
 
   addCard(name, link) {
-    return fetch(`${this.baseUrl}v1/${this.group}/cards`, {
+    return fetch(`${this.baseUrl}/cards`, {
       method: "POST",
       headers: {
         authorization: this.token,
@@ -72,7 +72,7 @@ class Api {
   setLike(cardID, likeState) {
     const method = likeState ? "DELETE" : "PUT";
 
-    return fetch(`${this.baseUrl}v1/${this.group}/cards/likes/${cardID}`, {
+    return fetch(`${this.baseUrl}/cards/likes/${cardID}`, {
       method,
       headers: {
         authorization: this.token,
@@ -84,7 +84,7 @@ class Api {
   }
 
   setAvatar(data) {
-    return fetch(`${this.baseUrl}v1/${this.group}/users/me/avatar`, {
+    return fetch(`${this.baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: {
         authorization: this.token,
@@ -99,7 +99,7 @@ class Api {
   }
 
   deleteCard(cardID) {
-    return fetch(`${this.baseUrl}v1/${this.group}/cards/${cardID}`, {
+    return fetch(`${this.baseUrl}/cards/${cardID}`, {
       method: "DELETE",
       headers: {
         authorization: this.token,
@@ -112,9 +112,7 @@ class Api {
 }
 
 const api = new Api(
-  "https://mesto.nomoreparties.co/",
-  "cohort-17",
-  "a3d68f30-ff26-46e5-95a8-5a60641ab807"
+  "https://api.awesome.students.nomoreparties.space/",
 );
 
 export default api;
