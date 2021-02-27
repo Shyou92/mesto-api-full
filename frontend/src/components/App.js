@@ -108,11 +108,9 @@ function App() {
   };
 
   const handleUpdateUser = (data) => {
-    console.log(data);
     api
       .setUserInfo(data)
       .then((res) => {
-        console.log(res);
         setCurrentUser(res);
         setIsEditProfilePopupOpen(false);
       })
@@ -162,8 +160,8 @@ function App() {
       .then((res) => {
         if (res.token) {
           setLoggedIn(true);
-          window.location.reload();
           tokenCheck(res.token);
+          window.location.reload();
           setUserData(userData);
           setResStatus(null);
           localStorage.setItem('jwt', res.token);
