@@ -108,10 +108,12 @@ function App() {
   };
 
   const handleUpdateUser = (data) => {
+    console.log(data);
     api
       .setUserInfo(data)
-      .then((newUserInfo) => {
-        setCurrentUser(newUserInfo);
+      .then((res) => {
+        console.log(res);
+        setCurrentUser(res);
         setIsEditProfilePopupOpen(false);
       })
       .catch((error) => console.log(error));

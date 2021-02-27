@@ -37,7 +37,7 @@ class Api {
     });
   }
 
-  setUserInfo(data) {
+  setUserInfo({name, about}) {
     return fetch(`${this.baseUrl}/users/me`, {
       method: "PATCH",
       headers: {
@@ -45,11 +45,12 @@ class Api {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        name: data.name,
-        about: data.about,
+        name,
+        about,
       }),
-    }).then((res) => {
-      return this._getResponseData(res);
+    }).then((data) => {
+      console.log(data);
+      return this._getResponseData(data);
     });
   }
 

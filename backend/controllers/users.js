@@ -51,7 +51,7 @@ const createUser = (req, res, next) => {
 const updateProfile = (req, res, next) => {
   const id = req.user._id;
   res.setHeader('Content-Type', 'application/json');
-  User.findByIdAndUpdate(id, { name: req.body.name, about: req.body.about })
+  User.findByIdAndUpdate(id, { name: req.body.name, about: req.body.about }, { new: true })
     .then((user) => {
       if (!user) {
         throw new BadRequest('Введите корректные данные');
