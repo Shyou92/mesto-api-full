@@ -1,6 +1,8 @@
 class Api {
-  constructor(baseUrl) {
+  constructor(baseUrl, token) {
     this.baseUrl = baseUrl;
+    let jwt = localStorage.getItem('jwt');
+    this.token = jwt;
   }
 
   _getResponseData(res) {
@@ -16,7 +18,7 @@ class Api {
   getUserInfo() {
     return fetch(`${this.baseUrl}/users/me`, {
       headers: {
-        'Accept': 'application/json',
+        'Authorization': `Bearer ${this.token}`,
         'Content-Type': 'application/json',
       },
     }).then((res) => {
@@ -27,7 +29,7 @@ class Api {
   getCards() {
     return fetch(`${this.baseUrl}/cards`, {
       headers: {
-        'Accept': 'application/json',
+        'Authorization': `Bearer ${this.token}`,
         'Content-Type': 'application/json',
       },
     }).then((res) => {
@@ -39,7 +41,7 @@ class Api {
     return fetch(`${this.baseUrl}/users/me`, {
       method: "PATCH",
       headers: {
-        'Accept': 'application/json',
+        'Authorization': `Bearer ${this.token}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
@@ -55,7 +57,7 @@ class Api {
     return fetch(`${this.baseUrl}/cards`, {
       method: "POST",
       headers: {
-        'Accept': 'application/json',
+        'Authorization': `Bearer ${this.token}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
@@ -68,12 +70,12 @@ class Api {
   }
 
   setLike(cardID, likeState) {
-    const method = likeState ? "DELETE" : "PUT";
+    const method = likeState === true ? "DELETE" : "PUT";
 
-    return fetch(`${this.baseUrl}/cards/likes/${cardID}`, {
+    return fetch(`${this.baseUrl}/cards/${cardID}/likes`, {
       method,
       headers: {
-        'Accept': 'application/json',
+        'Authorization': `Bearer ${this.token}`,
         'Content-Type': 'application/json',
       },
     }).then((res) => {
@@ -82,25 +84,26 @@ class Api {
   }
 
   setAvatar(data) {
+    console.log(data);
     return fetch(`${this.baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: {
-        'Accept': 'application/json',
+        'Authorization': `Bearer ${this.token}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        avatar: data,
+        avatar: data.avatar,
       }),
     }).then((res) => {
       return this._getResponseData(res);
     });
   }
 
-  deleteCard(cardID) {
-    return fetch(`${this.baseUrl}/cards/${cardID}`, {
+  deleteCard(cardId) {
+    return fetch(`${this.baseUrl}/cards/${cardId}`, {
       method: "DELETE",
       headers: {
-        'Accept': 'application/json',
+        'Authorization': `Bearer ${this.token}`,
         'Content-Type': 'application/json',
       },
     }).then((res) => {
@@ -110,7 +113,7 @@ class Api {
 }
 
 const api = new Api(
-  "https://api.awesome.students.nomoreparties.space",
+  "http://localhost:3000",
 );
 
 export default api;

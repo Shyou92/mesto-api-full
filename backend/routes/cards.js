@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const controller = require('../controllers/cards');
 const createCardValidation = require('../middlewares/validators/createCard');
-const cardIdValidation = require('../middlewares/validators/id');
+const cardIdValidation = require('../middlewares/validators/validateObjId');
 
 router.get('/', controller.getCards); // obtaining all cards
 

@@ -22,7 +22,7 @@ const createCard = (req, res, next) => {
       if (!card) {
         throw new BadRequest('Введите корректные данные');
       }
-      res.status(200).send({ data: card });
+      res.status(200).send(card);
     })
     .catch((err) => {
       next(err);
@@ -44,7 +44,7 @@ const deleteCard = (req, res, next) => {
 
       Card.findByIdAndDelete(cardId)
         .then((data) => {
-          res.status(200).send({ data });
+          res.status(200).send(data);
         })
         .catch(next);
     });
@@ -63,7 +63,7 @@ const likeCard = (req, res, next) => {
       if (!card) {
         throw new NotFound('Такой карточки не существует');
       } else {
-        res.status(200).send({ data: card });
+        res.status(200).send(card);
       }
     })
     .catch((err) => next(err));
@@ -81,7 +81,7 @@ const dislikeCard = (req, res, next) => {
       if (!card) {
         throw new NotFound('Такой карточки не существует');
       } else {
-        res.status(200).send({ data: card });
+        res.status(200).send(card);
       }
     })
     .catch((err) => next(err));

@@ -1,17 +1,17 @@
 const { celebrate, Joi } = require('celebrate');
-const validator = require('validator');
+const { isValidObjectId } = require('mongoose');
 
-const id = celebrate({
+const validateObjId = celebrate({
   params: Joi.object().keys({
-    id: Joi.string()
+    cardId: Joi
       .required()
       .custom((value) => {
-        if (!validator(value)) {
+        if (!isValidObjectId(value)) {
           throw new Error('Ошибка валидации. Передан неправильный Id');
         }
         return value;
       }),
-  }),
+  }).unknown(true),
 });
 
-module.exports = id;
+module.exports = validateObjId;

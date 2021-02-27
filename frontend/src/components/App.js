@@ -87,8 +87,7 @@ function App() {
   };
 
   const handleLikeCard = (card) => {
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
-
+    const isLiked = card.likes.some((i) => i === currentUser._id);
     api
       .setLike(card._id, isLiked)
       .then((newCard) => {
@@ -102,7 +101,7 @@ function App() {
     api
       .deleteCard(card._id)
       .then((deletedCard) => {
-        const rerenderInitialCards = cards.filter((c) => c._id !== card._id);
+        const rerenderInitialCards = cards.filter((deletedCard) => deletedCard._id !== card._id);
         setCards(rerenderInitialCards);
       })
       .catch((error) => console.log(error));
@@ -161,6 +160,7 @@ function App() {
       .then((res) => {
         if (res.token) {
           setLoggedIn(true);
+          window.location.reload();
           tokenCheck(res.token);
           setUserData(userData);
           setResStatus(null);
@@ -188,7 +188,7 @@ function App() {
           throw new Error('Токен не передан или передан не в том формате');
         }
         if (res) {
-          let userEmail = res.data.email;
+          let userEmail = res.email;
           setLoggedIn(true);
           setUserData(userEmail);
           history.push('/');

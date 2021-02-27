@@ -2,6 +2,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const { NotFound, BadRequest, Unauthorized } = require('../errors');
+const JWT_SECRET = require('../config');
 
 const getUsers = (req, res, next) => {
   User.find({})
@@ -50,13 +51,12 @@ const createUser = (req, res, next) => {
 const updateProfile = (req, res, next) => {
   const id = req.user._id;
   res.setHeader('Content-Type', 'application/json');
-
   User.findByIdAndUpdate(id, { name: req.body.name, about: req.body.about })
     .then((user) => {
       if (!user) {
         throw new BadRequest('Введите корректные данные');
       }
-      res.status(200).send({ data: user });
+      res.status(200).send(user);
     })
     .catch((err) => {
       next(err);
@@ -66,15 +66,14 @@ const updateProfile = (req, res, next) => {
 const updateAvatar = (req, res, next) => {
   const id = req.user._id;
   res.setHeader('Content-Type', 'application/json');
-
   User.findByIdAndUpdate(id, {
     avatar: req.body.avatar,
-  })
+  }, { new: true })
     .then((user) => {
       if (!user) {
         throw new BadRequest('Введите корректные данные');
       }
-      res.status(200).send({ data: user });
+      res.status(200).send(user);
     })
     .catch((err) => {
       next(err);
@@ -90,7 +89,7 @@ const login = (req, res, next) => {
         throw new Unauthorized('Неправильные почта или пароль');
       }
 
-      const token = jwt.sign({ _id: user._id }, '6afe49c579431af0fdb89c6566ad090995656fbb793e9a20b5d6872281031532', { expiresIn: '7d' });
+      const token = jwt.sign({ _id: user._id }, JWT_SECRET, { expiresIn: '7d' });
 
       res.send({ token });
     })

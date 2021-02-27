@@ -6,12 +6,12 @@ function InfoTooltip({ isOpened, onClose, resStatus }) {
     <div className={`popup ${isOpened ? 'popup_is-opened' : ''}`}>
       <div className='popup__container popup__container_reg-response'>
         <img
-          src={resStatus === 201 ? successTip : failTip}
+          src={resStatus === 200 ? successTip : failTip}
           alt='статус'
           className='popup__reg-image'
         />
         <h2 className='popup__title popup__reg-title'>
-          {resStatus === 201
+          {resStatus === 200
             ? 'Вы успешно зарегистрировались!'
             : 'Что-то пошло не так! Попробуйте ещё раз.'}
         </h2>
