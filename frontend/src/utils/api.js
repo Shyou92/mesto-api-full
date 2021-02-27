@@ -49,7 +49,6 @@ class Api {
         about,
       }),
     }).then((data) => {
-      console.log(data);
       return this._getResponseData(data);
     });
   }
@@ -85,7 +84,6 @@ class Api {
   }
 
   setAvatar(data) {
-    console.log(data);
     return fetch(`${this.baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: {
