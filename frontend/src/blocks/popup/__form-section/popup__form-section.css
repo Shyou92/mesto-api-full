@@ -1,0 +1,16 @@
+.popup__form-section {
+  display: flex;
+  justify-content: center;
+  margin: 0 0 36px 0;
+  position: relative;
+}
+
+.popup__form-section:last-of-type {
+  margin-bottom: 0;
+}
+
+@media screen and (max-width: 509px) {
+  .popup__form-section {
+    margin: 0 0 15px 0;
+  }
+}

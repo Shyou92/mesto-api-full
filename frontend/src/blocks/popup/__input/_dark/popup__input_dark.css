@@ -1,0 +1,10 @@
+.popup__input_dark {
+  background-color: black;
+  border-bottom: 2px solid rgba(204, 204, 204, 1);
+  margin-bottom: 30px;
+  color: white;
+}
+
+.popup__input_dark:nth-last-of-type(1) {
+  margin-bottom: 216px;
+}

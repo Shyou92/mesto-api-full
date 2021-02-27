@@ -1,0 +1,7 @@
+.popup__container_reg-response {
+  width: 430px;
+  height: 330px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
