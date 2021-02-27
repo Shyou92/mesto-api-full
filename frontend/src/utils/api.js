@@ -113,7 +113,7 @@ class Api {
 }
 
 const api = new Api(
-  "https://api.awesome.students.nomoreparties.space/",
+  "https://api.awesome.students.nomoreparties.space",
 );
 
 export default api;
