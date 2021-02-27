@@ -1,4 +1,4 @@
-const BASE_URL = 'https://awesome.students.nomoreparties.space/';
+const BASE_URL = 'https://api.awesome.students.nomoreparties.space/';
 const token = localStorage.getItem('jwt');
 
 export const register = (email, password) => {
