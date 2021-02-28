@@ -3,8 +3,10 @@ const validator = require('validator');
 
 const createCard = celebrate({
   body: Joi.object().keys({
-    name: Joi.string().required()
+    name: Joi.string().required().min(2).max(30)
       .messages({
+        'string.min': 'Минимальная длина названия карточки - 2 символа',
+        'string.max': 'Максимальная длина названия карточки - 30 символов',
         'any.required': 'Обязательное поле',
       }),
     link: Joi.string().required().custom((value) => {

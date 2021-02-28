@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const controller = require('../controllers/users');
-const userIdValidation = require('../middlewares/validators/validateObjId');
+const userIdValidation = require('../middlewares/validators/validateUserId');
 const updateProfileValidation = require('../middlewares/validators/updateProfile');
 const updateAvatarValidation = require('../middlewares/validators/updateAvatar');
 

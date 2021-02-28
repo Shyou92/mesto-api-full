@@ -32,21 +32,16 @@ const createCard = (req, res, next) => {
 const deleteCard = (req, res, next) => {
   const { cardId } = req.params;
 
-  Card.findById(cardId)
-    .orFail()
-    .catch(() => {
-      throw new NotFound('Такой карточки не существует');
-    })
-    .then((card) => {
-      if (card.owner.toString() !== req.user._id) {
+  Card.findOneAndDelete(cardId)
+    .then((data) => {
+      if (!data) { throw new NotFound('Такой карточки не существует'); }
+      if (data.owner.toString() !== req.user._id) {
         throw new Forbidden('Нет доступа к этой карточке');
       }
-
-      Card.findByIdAndDelete(cardId)
-        .then((data) => {
-          res.status(200).send(data);
-        })
-        .catch(next);
+      res.status(200).send(data);
+    })
+    .catch((err) => {
+      next(err);
     });
 };
 
