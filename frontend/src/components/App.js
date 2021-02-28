@@ -147,7 +147,7 @@ function App() {
           return (res.status = 400);
         }
         if (res) {
-          return res;
+          return res.email;
         }
       })
       .catch((err) => console.log(err));

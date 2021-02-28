@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -37,13 +39,14 @@ app.get('/crash-test', () => {
 app.post('/signup', registerValidation, createUser);
 app.post('/signin', loginValidation, login);
 
+app.use('*', (req, res) => {
+  throw new NotFound('Запрашиваемый ресурс не найден');
+});
+
 app.use(auth);
 
 app.use('/', router);
 /* eslint no-unused-vars: 0 */
-app.use('*', (req, res) => {
-  throw new NotFound('Запрашиваемый ресурс не найден');
-});
 
 app.use(errorLogger);
 

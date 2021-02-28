@@ -2,7 +2,8 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const { NotFound, BadRequest, Unauthorized } = require('../errors');
-const JWT_SECRET = require('../config');
+
+const { JWT_SECRET } = process.env;
 
 const getUsers = (req, res, next) => {
   User.find({})
@@ -41,7 +42,14 @@ const createUser = (req, res, next) => {
       if (!user) {
         throw new BadRequest('Введите корректные данные');
       }
-      res.send({ data: user });
+      const newUser = {
+        name: user.name,
+        about: user.about,
+        avatar: user.avatar,
+        _id: user._id,
+        email: user.email,
+      };
+      res.send({ data: newUser });
     })
     .catch((err) => {
       next(err);
