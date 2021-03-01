@@ -7,11 +7,11 @@ const validateUserId = celebrate({
       .required()
       .custom((value) => {
         if (!isValidObjectId(value)) {
-          throw new Error('Ошибка валидации. Передан неправильный Id');
+          throw new Error('Ошибка валидации. Передан неверный id');
         }
         return value;
       }),
-  }),
+  }).unknown(true),
 });
 
 module.exports = validateUserId;

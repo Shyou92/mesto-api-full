@@ -1,7 +1,7 @@
 /* eslint no-unused-vars: 0 */
 /* eslint no-console: 0 */
 const { CelebrateError } = require('celebrate');
-const { Conflict } = require('../errors');
+const { Conflict, NotFound } = require('../errors');
 
 const errorHandler = (err, req, res, next) => {
   if (err instanceof CelebrateError) {
