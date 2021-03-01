@@ -112,7 +112,7 @@ class Api {
 }
 
 const api = new Api(
-  "http://localhost:3000",
+  "https://api.awesome.students.nomoreparties.space",
 );
 
 export default api;
