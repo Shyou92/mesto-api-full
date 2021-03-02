@@ -32,7 +32,7 @@ const createCard = (req, res, next) => {
 const deleteCard = (req, res, next) => {
   const { cardId } = req.params;
 
-  Card.findOneAndDelete(cardId)
+  Card.findByIdAndDelete(cardId)
     .then((data) => {
       if (!data) { throw new NotFound('Такой карточки не существует'); }
       if (data.owner.toString() !== req.user._id) {

@@ -8,7 +8,7 @@
     "dev": "nodemon app.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Alexander Vitchinov",
   "license": "ISC",
   "devDependencies": {
     "eslint": "^7.17.0",
