@@ -1,6 +1,6 @@
-## #H1 Проект Mesto
+## Проект Mesto
 
-#H2 Описание.
+# Описание.
 
 Данный проект является учебным аналогом Instagram. В нем представлены следующие возможности:
 
@@ -15,7 +15,7 @@
 
 Технологии, которые применялись при реализации проекта.
 
-![](C:\Users\User\AppData\Local\Programs\Microsoft VS Code\resources\app\resources\win32\code_70x70.png)
+<img src="file:///C:/Users/User/AppData/Local/Programs/MicrosoftVSCode/resources/app/resources/win32/code_70x70.png" />)
 
 Ссылка на сервер: https://api.awesome.students.nomoreparties.space  
 Айди сервера: 84.201.152.21  
