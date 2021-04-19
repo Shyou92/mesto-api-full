@@ -15,7 +15,13 @@
 
 Технологии, которые применялись при реализации проекта.
 
-![](C:\Users\User\AppData\Local\Programs\MicrosoftVSCode\resources\app\resources\win32\code_70x70.png" width ='30px' height ='30px')
+- HTML5
+- CSS3
+- JS
+- React.js
+- Express.js
+- Git
+- mongoDB
 
 Ссылка на сервер: https://api.awesome.students.nomoreparties.space  
 Айди сервера: 84.201.152.21  
