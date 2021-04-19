@@ -15,7 +15,7 @@
 
 Технологии, которые применялись при реализации проекта.
 
-<img src="file:///C:/Users/User/AppData/Local/Programs/MicrosoftVSCode/resources/app/resources/win32/code_70x70.png" />)
+<img src="file:///C:/Users/User/AppData/Local/Programs/MicrosoftVSCode/resources/app/resources/win32/code_70x70.png" width="250" />
 
 Ссылка на сервер: https://api.awesome.students.nomoreparties.space  
 Айди сервера: 84.201.152.21  
