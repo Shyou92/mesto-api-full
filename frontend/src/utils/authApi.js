@@ -1,4 +1,4 @@
-const BASE_URL = 'https://api.awesome.students.nomoreparties.space';
+const BASE_URL = 'https://mesto.nomoreparties.co';
 const token = localStorage.getItem('jwt');
 
 export const register = (email, password) => {
@@ -28,7 +28,7 @@ export const authorize = (email, password) => {
     headers: {
       Accept: 'application.json',
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({ email, password }),
   }).then((res) => {
